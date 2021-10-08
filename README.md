@@ -1,5 +1,7 @@
 # Argent Bank
 
+![Lien](https://i.gyazo.com/d7c535a86078bd50a6f66a1bbc526221.png)
+
 ## Prerequisites
 
 - [NodeJS (version 14.17)](https://nodejs.org/en/)
