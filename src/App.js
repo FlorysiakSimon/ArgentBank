@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import Footer from "./components/Footer/Footer";
 import Nav from "./components/Nav/Nav";
 import UserPage from './pages/UserPage/UserPage';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route exact path="/" component={HomePage} />
         <Route path='/login' component={LoginPage} />
         <Route path='/user' component={UserPage} />
+        <Route component={ErrorPage} />
       </Switch>
       <Footer/>
     </Router>
