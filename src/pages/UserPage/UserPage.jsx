@@ -1,7 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router';
 import './UserPage.scss'
 
 export default function UserPage() {
+    const user = useSelector((state) => state.user); //get user state
+
+    if(!user.logged) {return <Redirect to='/' /> }
+
     return (
             <main className="main bg-dark">
                 <div className="header">

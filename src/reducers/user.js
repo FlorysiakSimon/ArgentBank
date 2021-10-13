@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST } from "../action";
+import { LOGIN_REQUEST, LOGOUT_REQUEST, LOGIN_SUCCESS} from "../action";
 
 
 export const initialState = {
@@ -8,7 +8,6 @@ export const initialState = {
 	id: "",
 	firstName: "",
 	lastName: "",
-	token: "",
 };
 
 const user = (state = initialState, action) => {
@@ -16,9 +15,18 @@ const user = (state = initialState, action) => {
 		case LOGIN_REQUEST:
 			return {
 				...state,
-				logged: true,
 			};
-
+		case LOGIN_SUCCESS:
+			return {
+				...state,
+				logged: true,
+				email:action.payload.email,
+				password:action.payload.password
+			}
+		case LOGOUT_REQUEST:
+			return {
+				initialState
+			};
 		default:
 			return state;
 	}
