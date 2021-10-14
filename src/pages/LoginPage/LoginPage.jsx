@@ -12,8 +12,7 @@ export default function LoginPage() {
 	const [password, setPassword] = useState('');
 
     const handleInputChange = (event) => {
-        if (event.target.id === 'username'){setEmail(event.target.value)}
-        if (event.target.id === 'password'){setPassword(event.target.value)}
+        event.target.id === 'username' ? setEmail(event.target.value) : setPassword(event.target.value) 
     }
     const onSubmit = (event) =>{
         event.preventDefault();
@@ -30,11 +29,11 @@ export default function LoginPage() {
                 <form onSubmit={onSubmit}>
                     <div className="input-wrapper">
                         <label htmlFor="username">Email</label>
-                        <input type="text" id="username" value={email} onChange={handleInputChange}/>
+                        <input type="text" id="username" value={email} onChange={handleInputChange} autoComplete="username"/>
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" value={password} onChange={handleInputChange}/>
+                        <input type="password" id="password" value={password} onChange={handleInputChange} autoComplete="current-password"/>
                     </div>
                     <div className="input-remember">
                         <input type="checkbox" id="remember-me"  />

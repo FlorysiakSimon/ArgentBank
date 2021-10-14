@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT_REQUEST, LOGIN_SUCCESS,LOGIN_ERROR} from "../action";
+import { LOGIN, LOGOUT_REQUEST, LOGIN_SUCCESS,LOGIN_ERROR, USER_INFO} from "../action";
 
 
 export const initialState = {
@@ -35,6 +35,12 @@ const user = (state = initialState, action) => {
 			return{
 				...state,
 				error: true,
+			}
+		case USER_INFO:
+			return{
+				...state,
+				firstName:action.payload.firstName,
+				lastName:action.payload.lastName,
 			}
 		default:
 			return state;
