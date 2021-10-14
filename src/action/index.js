@@ -11,18 +11,18 @@ var token = ''
  * @param {string} email
  * @param {string} password
  */
- export const loginRequest = (email, password) => {
-	return async (dispatch) => {
-		dispatch({ type: LOGIN });
-		try {
-			const res = await db.post('user/login',{ email, password });
+export const loginRequest = (email,password) => {
+	return(dispatch) => {
+		db.post('user/login',{ email, password }) 
+		.then((res) => {
 			token = res.data.body.token
 			dispatch({type: LOGIN_SUCCESS, payload:{ email, password, token }})
-		} catch (error) {
+		})
+		.catch(() => {
 			dispatch({type:LOGIN_ERROR})
-		}
-	};
-};
+		})
+	}
+}
 
 /** logout
  */
@@ -32,13 +32,26 @@ export const logOut = () => ({
 
 /** call api for user infos
  */
+ /*
 export const userInfo = () => {
-	return async (dispatch) => {
-		try {
-			const res = await db.post('user/profile',{},{ headers:{ Authorization: `Bearer`+ token }});
-			dispatch({type: USER_INFO, payload:{ firstName:res.data.body.firstName, lastName:res.data.body.lastName }})
-		} catch (error) {
-			console.log(error)
-		}
+		return async (dispatch) => {
+			try {
+				const res = await db.post('user/profile',{},{ headers:{ Authorization: `Bearer`+ token }});
+				dispatch({type: USER_INFO, payload:{ firstName:res.data.body.firstName, lastName:res.data.body.lastName }})
+			} catch (error) {
+				console.log(error)
+			}
+		};
 	};
-};
+*/
+export const userInfo = () => {
+	return(dispatch) => {
+			db.post('user/profile',{},{ headers:{ Authorization: `Bearer`+ token }})
+			.then((res) => {
+				dispatch({type: USER_INFO, payload:{ firstName:res.data.body.firstName, lastName:res.data.body.lastName }})
+			})
+			.catch(() => {
+				console.log('error')
+			})
+		}
+	}
