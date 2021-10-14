@@ -1,39 +1,32 @@
 import db from '../services/db'
 
-export const LOGIN_REQUEST = "LOGIN_REQUEST"
+export const LOGIN = "LOGIN"
 export const LOGIN_SUCCESS = "LOGIN_SUCESS"
 export const LOGOUT_REQUEST = "LOGOUT_REQUEST"
-/**
+export const LOGIN_ERROR = "LOGIN_ERROR"
+
+/** call api for login request
  * @param {string} email
  * @param {string} password
  */
  export const loginRequest = (email, password) => {
 	return async (dispatch) => {
-		dispatch({ type: LOGIN_REQUEST });
+		dispatch({ type: LOGIN });
 		try {
 			const res = await db.post('/login', { email, password });
-            dispatch(loginSuccess(email, password, res.data));
-			console.log(res)
+			const token = res.data.body.token
+			dispatch({type: LOGIN_SUCCESS, payload:{ email, password, token }})
+			console.log(token)
 		} catch (error) {
-			console.log(error);
+			dispatch({type:LOGIN_ERROR})
+			//console.log(error);
 		}
 	};
 };
 
-/**
- * @param {string} email
- * @param {string} password
+/** logout
  */
- export const loginSuccess = (email, password) => {
-	return {
-		type: LOGIN_SUCCESS,
-		payload: {
-			email,
-			password,
-		},
-	};
-};
-
 export const logOut = () => ({
 	type: LOGOUT_REQUEST,
 });
+

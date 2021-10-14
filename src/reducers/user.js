@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGOUT_REQUEST, LOGIN_SUCCESS} from "../action";
+import { LOGIN, LOGOUT_REQUEST, LOGIN_SUCCESS,LOGIN_ERROR} from "../action";
 
 
 export const initialState = {
@@ -8,11 +8,13 @@ export const initialState = {
 	id: "",
 	firstName: "",
 	lastName: "",
+	token:"",
+	error:false
 };
 
 const user = (state = initialState, action) => {
 	switch (action.type) {
-		case LOGIN_REQUEST:
+		case LOGIN:
 			return {
 				...state,
 			};
@@ -20,13 +22,20 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				logged: true,
+				error: false,
 				email:action.payload.email,
-				password:action.payload.password
+				password:action.payload.password,
+				token:action.payload.token
 			}
 		case LOGOUT_REQUEST:
 			return {
 				initialState
 			};
+		case LOGIN_ERROR:
+			return{
+				...state,
+				error: true,
+			}
 		default:
 			return state;
 	}
