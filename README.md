@@ -1,6 +1,6 @@
 # Argent Bank
 
-![Lien](https://i.gyazo.com/d7c535a86078bd50a6f66a1bbc526221.png)
+![Lien](https://i.gyazo.com/db0b89f4a2e481c46c4cac49cd301078.png)
 
 ## Prerequisites
 
