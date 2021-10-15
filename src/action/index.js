@@ -1,6 +1,5 @@
 import db from '../services/db'
 
-export const LOGIN = "LOGIN"
 export const LOGIN_SUCCESS = "LOGIN_SUCESS"
 export const LOGOUT_REQUEST = "LOGOUT_REQUEST"
 export const LOGIN_ERROR = "LOGIN_ERROR"
@@ -38,8 +37,26 @@ export const userInfo = () => {
 		.then((res) => {
 			dispatch({type: USER_INFO, payload:{ firstName:res.data.body.firstName, lastName:res.data.body.lastName }})
 		})
-		.catch(() => {
-			console.log('error')
+		.catch((error) => {
+			console.log(error)
 		})
 	}
 }
+
+
+/** call api for user infos
+ * @param {string} firstName
+ * @param {string} lastName
+ */
+ export const changeUserInfo = (firstName,lastName) => {
+	return(dispatch) => {
+		db.put('user/profile',{firstName,lastName},{ headers:{ Authorization: `Bearer`+ token }})
+		.then(() => {
+			dispatch({type: USER_INFO, payload:{firstName, lastName }})
+		})
+		.catch((error) => {
+			console.log(error)
+		})
+	}
+}
+

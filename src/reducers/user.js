@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT_REQUEST, LOGIN_SUCCESS,LOGIN_ERROR, USER_INFO} from "../action";
+import {  LOGOUT_REQUEST, LOGIN_SUCCESS,LOGIN_ERROR, USER_INFO} from "../action";
 
 
 export const initialState = {
@@ -14,10 +14,6 @@ export const initialState = {
 
 const user = (state = initialState, action) => {
 	switch (action.type) {
-		case LOGIN:
-			return {
-				...state,
-			};
 		case LOGIN_SUCCESS:
 			return {
 				...state,
