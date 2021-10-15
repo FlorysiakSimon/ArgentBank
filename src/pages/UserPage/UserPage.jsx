@@ -1,13 +1,23 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router';
 import { userInfo } from '../../action';
 import './UserPage.scss'
+import Account from '../../components/Account/Account';
+import { accounts } from '../../services/accounts'; //mocked account data
 
 export default function UserPage() {
     const user = useSelector((state) => state.user); //get user state
     const dispatch = useDispatch()
     
+    const [firstName, setfirstName] = useState('');
+	const [lastName, setlastName] = useState('');
+
+    const handleInputChange = (event) => {
+        event.target.id === 'firstName' ? setfirstName(event.target.value) : setlastName(event.target.value) 
+    }
+    
+
     //get user info
     useEffect(() => {
         dispatch(userInfo());
@@ -16,42 +26,30 @@ export default function UserPage() {
     if(!user.logged){return <Redirect to='/'/>}
 
     return (
-            <main className="main bg-dark">
-                <div className="header">
-                    <h1>Welcome back<br />{user.firstName} {user.lastName}</h1>
-                    <button className="edit-button">Edit Name</button>
-                </div>
-                <h2 className="sr-only">Accounts</h2>
-                <section className="account">
-                    <div className="account-content-wrapper">
-                        <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-                        <p className="account-amount">$2,082.79</p>
-                        <p className="account-amount-description">Available Balance</p>
+        <main className="main bg-dark">
+            <div className="header">
+                <h1>Welcome back<br />{user.firstName} {user.lastName}</h1>
+                
+                <form >
+                    <div className="input">
+                        <input className="input-edit" type="text" id="firstName" placeholder={user.firstName}  value={firstName} onChange={handleInputChange}/>
+                        <input className="input-edit" type="text" id="lastName" placeholder={user.lastName} value={lastName} onChange={handleInputChange}/>
                     </div>
-                    <div className="account-content-wrapper cta">
-                        <button className="transaction-button">View transactions</button>
+                    <div className="buttons">
+                        <button className="edit-button form-button">Save</button>
+                        <button className="edit-button form-button">Cancel</button>
                     </div>
-                </section>
-                <section className="account">
-                    <div className="account-content-wrapper">
-                        <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-                        <p className="account-amount">$10,928.42</p>
-                        <p className="account-amount-description">Available Balance</p>
-                    </div>
-                    <div className="account-content-wrapper cta">
-                        <button className="transaction-button">View transactions</button>
-                    </div>
-                </section>
-                <section className="account">
-                    <div className="account-content-wrapper">
-                        <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-                        <p className="account-amount">$184.30</p>
-                        <p className="account-amount-description">Current Balance</p>
-                    </div>
-                    <div className="account-content-wrapper cta">
-                        <button className="transaction-button">View transactions</button>
-                    </div>
-                </section>
-            </main>
+                </form>
+
+                <button className="edit-button">Edit Name</button>
+                
+                
+            </div>
+
+            <h2 className="sr-only">Accounts</h2>
+            {accounts.map((account,index) =>
+                <Account key={index} title={account.title} amount={account.amount} description={account.description} />
+            )};
+        </main>
     )
 }
