@@ -2,7 +2,11 @@ import React from 'react'
 import './Account.scss'
 import PropTypes from 'prop-types'; 
 
-
+/** display account transaction
+ * @param  {string} title
+ * @param  {string} amount
+ * @param  {string} description
+ */
 export default function Account({title,amount,description}) {
     return (
         <section className="account">

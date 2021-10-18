@@ -26,6 +26,7 @@ export default function UserPage() {
     const onSubmit = (event) =>{
         event.preventDefault();
         dispatch(changeUserInfo(firstName,lastName))
+        setShowResults(false)
     }
    
     //handle display of form
@@ -33,6 +34,7 @@ export default function UserPage() {
     const displayForm = () => setShowResults(true)
     const removeForm = () => setShowResults(false)
     
+   
     if(!user.logged){return <Redirect to='/'/>}
     return (
         <main className="main bg-dark">
@@ -46,8 +48,8 @@ export default function UserPage() {
                         <input required className="input-edit" type="text" id="lastName" placeholder={user.lastName} value={lastName} onChange={handleInputChange}/>
                     </div>
                     <div className="buttons">
-                        <button className="edit-button form-button" type="submit" onClick={removeForm}>Save</button>
-                        <button className="edit-button form-button" type='reset' onClick={removeForm} >Cancel</button>
+                        <button className="edit-button form-button" type="submit"  >Save</button>
+                        <button className="edit-button form-button" type='button' onClick={removeForm} >Cancel</button>
                     </div>
                 </form>
                  }
