@@ -29,10 +29,12 @@ export default function Nav() {
                 </div>
                 ):(
                 <div>
+                <Link to="/user">
                     <span className='main-nav-item'>
                         <i className='fa fa-user-circle'></i>
                         {user.firstName}
                     </span>
+                </Link>
                     <Link className='main-nav-item' onClick={disconnect} to='/' >
                         <i className='fa fa-sign-out'></i>
                         Sign Out
