@@ -21,7 +21,7 @@ export default function UserPage() {
     const handleInputChange = (event) => {
         event.target.id === 'firstName' ? setfirstName(event.target.value) : setlastName(event.target.value) 
     }
-
+    
     //change user.firstName & user.lastName in API
     const onSubmit = (event) =>{
         event.preventDefault();
@@ -34,7 +34,6 @@ export default function UserPage() {
     const displayForm = () => setShowResults(true)
     const removeForm = () => setShowResults(false)
     
-   
     if(!user.logged){return <Redirect to='/'/>}
     return (
         <main className="main bg-dark">

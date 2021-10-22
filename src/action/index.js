@@ -15,6 +15,7 @@ export const loginRequest = (email,password) => {
 		db.post('user/login',{ email, password }) 
 		.then((res) => {
 			token = res.data.body.token
+			localStorage.setItem('token', token)
 			dispatch({type: LOGIN_SUCCESS, payload:{ email, password, token }})
 		})
 		.catch(() => {
@@ -33,7 +34,7 @@ export const logOut = () => ({
  */
 export const userInfo = () => {
 	return(dispatch) => {
-		db.post('user/profile',{},{ headers:{ Authorization: `Bearer`+ token }})
+		db.post('user/profile',{},{ headers:{ Authorization: `Bearer`+ localStorage.getItem('token') }})
 		.then((res) => {
 			dispatch({type: USER_INFO, payload:{ firstName:res.data.body.firstName, lastName:res.data.body.lastName }})
 		})
@@ -50,7 +51,7 @@ export const userInfo = () => {
  */
  export const changeUserInfo = (firstName,lastName) => {
 	return(dispatch) => {
-		db.put('user/profile',{firstName,lastName},{ headers:{ Authorization: `Bearer`+ token }})
+		db.put('user/profile',{firstName,lastName},{ headers:{ Authorization: `Bearer`+ localStorage.getItem('token') }})
 		.then(() => {
 			dispatch({type: USER_INFO, payload:{firstName, lastName }})
 		})
