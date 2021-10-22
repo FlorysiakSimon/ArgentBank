@@ -14,6 +14,7 @@
 - [sass](https://sass-lang.com/)
 - [axios](https://axios-http.com/)
 - [prop-types](https://github.com/facebook/prop-types)
+- [redux-persist](https://www.npmjs.com/package/redux-persist)
 - Recommended text editor: [Visual Studio Code](https://code.visualstudio.com/)
 
 ## Installation
