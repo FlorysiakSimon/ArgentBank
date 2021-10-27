@@ -4,7 +4,6 @@ import {  LOGOUT_REQUEST, LOGIN_SUCCESS,LOGIN_ERROR, USER_INFO} from "../action"
 export const initialState = {
 	logged: false,
 	email: "",
-	password: "",
 	id: "",
 	firstName: "",
 	lastName: "",
@@ -20,7 +19,6 @@ const user = (state = initialState, action) => {
 				logged: true,
 				error: false,
 				email:action.payload.email,
-				password:action.payload.password,
 				token:action.payload.token
 			}
 		case LOGOUT_REQUEST:

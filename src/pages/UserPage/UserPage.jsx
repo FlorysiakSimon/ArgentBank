@@ -33,7 +33,7 @@ export default function UserPage() {
     const [showResults, setShowResults] = useState(false)
     const displayForm = () => setShowResults(true)
     const removeForm = () => setShowResults(false)
-    
+
     if(!user.logged){return <Redirect to='/'/>}
     return (
         <main className="main bg-dark">
