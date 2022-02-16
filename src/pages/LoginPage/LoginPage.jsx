@@ -9,10 +9,12 @@ export default function LoginPage() {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleInputChange = (event) => {
-        event.target.id === 'username' ? setEmail(event.target.value) : setPassword(event.target.value) 
+        event.target.id === 'username' 
+        ? setEmail(event.target.value) 
+        : setPassword(event.target.value) 
     }
     const onSubmit = (event) =>{
         event.preventDefault();

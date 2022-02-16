@@ -19,7 +19,9 @@ export default function UserPage() {
     const [firstName, setfirstName] = useState('');
 	const [lastName, setlastName] = useState('');
     const handleInputChange = (event) => {
-        event.target.id === 'firstName' ? setfirstName(event.target.value) : setlastName(event.target.value) 
+        event.target.id === 'firstName' 
+        ? setfirstName(event.target.value) 
+        : setlastName(event.target.value) 
     }
     
     //change user.firstName & user.lastName in API
